@@ -1,10 +1,11 @@
-# //TODO: ask reddit how to make this work on linux. msvcrt is only windows
+# //TODO: when functioning properly on linux, esc returns ^[ and then requires pressing enter after
 
-import msvcrt
 import os
 from random import randrange
 import sys
 from time import sleep
+if os.name == 'nt':
+    import msvcrt
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
