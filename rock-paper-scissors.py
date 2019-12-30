@@ -60,6 +60,7 @@ def try_again():
         print('Invalid input...')
 
 
+# //TODO: a possible work around for linux, ord(sys.stdin.read(1)). enter returns 10, esc doesnt work as desired but returns 27
 while True:
     print('WELCOME! WELCOME! WELCOME!\n\nto\n\nROCK PAPER SCISSORS!\n\n'
           'Press enter to play or escape to close the game')
