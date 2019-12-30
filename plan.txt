@@ -1,0 +1,13 @@
+program opens to a welcome menu
+    enter to continue or esc to close the game
+
+player then enters their option
+    1 for rock, 2 for paper, 3 for scissor
+
+pause for a few moments then display the results
+    perhaps something like PLAYER OPTION vs. COMPUTERS THROW
+    or just display the computers options, followed by stating the results
+        winner, loser, or tie
+
+then give the play the option to play again or to exit the program
+    enter to play again, esc to close the program
