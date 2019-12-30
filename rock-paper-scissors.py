@@ -1,4 +1,4 @@
-# //TODO: when functioning properly on linux, esc returns ^[ and then requires pressing enter after
+# //TODO: on linux, esc returns ^[ and then requires pressing enter after
 
 import os
 from random import randrange
@@ -57,7 +57,7 @@ def try_again():
     print('Would you like to play again?\nPress enter for yes, escape for no')
     if os.name == 'nt':
         option = ord(msvcrt.getch())
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls')
         if option == 13:
             pass
         elif option == 27:
@@ -66,7 +66,7 @@ def try_again():
             print('Invalid input...')
     else:
         option = ord(sys.stdin.read(1))
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('clear')
         if option == 10:
             pass
         elif option == 27:
@@ -75,14 +75,12 @@ def try_again():
             print('Invalid input...')
 
 
-
-# //TODO: a possible work around for linux, ord(sys.stdin.read(1)). enter returns 10, esc doesnt work as desired but returns 27
 while True:
     print('WELCOME! WELCOME! WELCOME!\n\nto\n\nROCK PAPER SCISSORS!\n\n'
           'Press enter to play or escape to close the game')
     if os.name == 'nt':
         option = ord(msvcrt.getch())
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls')
         if option == 13:
             play()
         elif option == 27:
@@ -91,7 +89,7 @@ while True:
             print('Invalid input...')
     else:
         option = ord(sys.stdin.read(1))
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('clear')
         if option == 10:
             play()
         elif option == 27:
