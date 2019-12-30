@@ -13,9 +13,9 @@ os.system('cls' if os.name == 'nt' else 'clear')
 def play():
     options = ('rock', 'paper', 'scissor')
     while True:
-        random_number = randrange(3)
         player_option = int(input('CHOOSE A WEAPON WITH WHICH TO DO BATTLE!\n'
                                   '(1. rock, 2. paper, 3. scissor)\n'))
+        random_number = randrange(3)
 
         if player_option == 1:
             print('\nROCK')
