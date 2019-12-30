@@ -1,8 +1,9 @@
 # //TODO: ask reddit how to make this work on linux. msvcrt is only windows
 
+import msvcrt
 import os
 from random import randrange
-import msvcrt
+import sys
 from time import sleep
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -23,10 +24,13 @@ def play():
             print('\nSCISSOR')
         else:
             print('\nInvalid input...\n')
-        print('\n.VS\n\n' + options[random_number].upper())
-        sleep(3)
+        sleep(1)
+        print('\n.VS\n')
+        sleep(2)
+        print(options[random_number].upper())
+        sleep(2)
         results(player_option, random_number)
-        sleep(3)
+        sleep(2)
         os.system('cls' if os.name == 'nt' else 'clear')
         try_again()
 
@@ -49,26 +53,47 @@ def results(player_option, random_number):
 
 
 def try_again():
-    print('Would you like to play again?\nPress enter for yes, escape for no)')
-    option = ord(msvcrt.getch())
-    os.system('cls' if os.name == 'nt' else 'clear')
-    if option == 13:
-        pass
-    elif option == 27:
-        exit()
+    print('Would you like to play again?\nPress enter for yes, escape for no')
+    if os.name == 'nt':
+        option = ord(msvcrt.getch())
+        os.system('cls' if os.name == 'nt' else 'clear')
+        if option == 13:
+            pass
+        elif option == 27:
+            exit()
+        else:
+            print('Invalid input...')
     else:
-        print('Invalid input...')
+        option = ord(sys.stdin.read(1))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        if option == 10:
+            pass
+        elif option == 27:
+            exit()
+        else:
+            print('Invalid input...')
+
 
 
 # //TODO: a possible work around for linux, ord(sys.stdin.read(1)). enter returns 10, esc doesnt work as desired but returns 27
 while True:
     print('WELCOME! WELCOME! WELCOME!\n\nto\n\nROCK PAPER SCISSORS!\n\n'
           'Press enter to play or escape to close the game')
-    option = ord(msvcrt.getch())
-    os.system('cls' if os.name == 'nt' else 'clear')
-    if option == 13:
-        play()
-    elif option == 27:
-        exit()
+    if os.name == 'nt':
+        option = ord(msvcrt.getch())
+        os.system('cls' if os.name == 'nt' else 'clear')
+        if option == 13:
+            play()
+        elif option == 27:
+            exit()
+        else:
+            print('Invalid input...')
     else:
-        print('Invalid input...')
+        option = ord(sys.stdin.read(1))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        if option == 10:
+            play()
+        elif option == 27:
+            exit()
+        else:
+            print('Invalid input...')
