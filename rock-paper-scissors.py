@@ -1,11 +1,6 @@
-# //TODO: on linux, esc returns ^[ and then requires pressing enter after
-
 import os
 from random import randrange
-import sys
 from time import sleep
-if os.name == 'nt':
-    import msvcrt
 
 
 def clear_screen():
@@ -21,33 +16,29 @@ def wrong_input():
 def play():
     options = ('rock', 'paper', 'scissor')
     while True:
-        try:
-            player_choice = int(input(
-                'CHOOSE A WEAPON WITH WHICH TO DO BATTLE!\n'
-                '(1. rock, 2. paper, 3. scissor)\n'))
-        except ValueError:
-            wrong_input()
-            continue
-        if player_choice == 0:
-            wrong_input()
-            continue
+        player_choice = str(input(
+            'CHOOSE A WEAPON WITH WHICH TO DO BATTLE!\n'
+            'R = rock, P = paper, S = scissor\n\n'))
+        if player_choice in ('r', 'R'):
+            player_choice = options[0]
+        elif player_choice in ('p', 'P'):
+            player_choice = options[1]
+        elif player_choice in ('s', 'S'):
+            player_choice = options[2]
         else:
-            try:
-                player_choice = options[player_choice - 1]
-            except IndexError:
-                wrong_input()
-                continue
-            computer_choice = options[randrange(len(options))]
-            clear_screen()
-            print('\n' + player_choice.upper())
-            sleep(2)
-            print('\n.vs'.upper())
-            sleep(2)
-            print('\n' + computer_choice.upper())
-            sleep(2)
-            results(player_choice, computer_choice)
-            sleep(4)
-            try_again()
+            wrong_input()
+            continue
+        computer_choice = options[randrange(len(options))]
+        clear_screen()
+        print('\n' + player_choice.upper())
+        sleep(2)
+        print('\n.vs'.upper())
+        sleep(2)
+        print('\n' + computer_choice.upper())
+        sleep(2)
+        results(player_choice, computer_choice)
+        sleep(4)
+        try_again()
 
 
 def results(player_choice, computer_choice):
@@ -67,49 +58,30 @@ def results(player_choice, computer_choice):
 def try_again():
     clear_screen()
     while True:
-        print('Would you like to play again?\n\n'
-              'Press enter for yes, escape for no')
-        if os.name == 'nt':
-            option = ord(msvcrt.getch())
-            if option == 13:
-                clear_screen()
-                break
-            elif option == 27:
-                exit()
-            else:
-                wrong_input()
-                continue
+        option = str(input(
+            'Would you like to play again?\n\n'
+            'Enter P = play again, X = exit\n\n'))
+        if option in ('p', 'P'):
+            clear_screen()
+            break
+        elif option in ('x', 'X'):
+            exit()
         else:
-            option = ord(sys.stdin.read(1))
-            if option == 10:
-                clear_screen()
-                break
-            elif option == 27:
-                exit()
-            else:
-                wrong_input()
-                continue
+            wrong_input()
+            continue
 
 
 while True:
     clear_screen()
-    print('WELCOME! WELCOME! WELCOME!\n\nto\n\nROCK PAPER SCISSORS!\n\n'
-          'Press enter to play or escape to close the game')
-    if os.name == 'nt':
-        option = ord(msvcrt.getch())
-        if option == 13:
-            clear_screen()
-            play()
-        elif option == 27:
-            exit()
-        else:
-            wrong_input()
+    option = str(input(
+        'WELCOME! WELCOME! WELCOME!\n\n'
+        'to\n\n'
+        'ROCK PAPER SCISSORS!\n\n'
+        'Enter P = play or X = exit\n\n'))
+    if option in ('p', 'P'):
+        clear_screen()
+        play()
+    elif option in ('x', 'X'):
+        exit()
     else:
-        option = ord(sys.stdin.read(1))
-        if option == 10:
-            clear_screen()
-            play()
-        elif option == 27:
-            exit()
-        else:
-            wrong_input()
+        wrong_input()
